@@ -1,7 +1,7 @@
-// import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia';
 import { createRouter, createWebHistory } from 'vue-router';
 
-// import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from '@/stores/auth.store';
 
 const routes = [
 	{
@@ -32,7 +32,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
-	// const authStore = useAuthStore();
+	const authStore = useAuthStore();
 	// const { user } = storeToRefs(authStore);
 	const user = { value: 'null' };
 
