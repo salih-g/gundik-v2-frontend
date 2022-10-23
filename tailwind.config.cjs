@@ -3,7 +3,7 @@ module.exports = {
 		themes: [
 			{
 				karpuzTheme: {
-					primary: '#f66667',
+					primary: '#535bf2',
 					secondary: '#89edc8',
 					accent: '#bbf57b',
 					neutral: '#261E29',
