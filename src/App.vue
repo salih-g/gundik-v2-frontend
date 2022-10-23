@@ -1,7 +1,9 @@
 <template>
-	<button class="btn">Hello Gundik</button>
+	<Drawer />
 </template>
 
-<script setup></script>
+<script setup>
+	import Drawer from './components/Drawer.vue';
+</script>
 
 <style scoped></style>
