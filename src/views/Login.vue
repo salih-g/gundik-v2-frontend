@@ -48,11 +48,11 @@
 							<button type="submit" class="btn btn-primary">Login</button>
 						</div>
 						<!-- Error -->
-						<!-- <div>
+						<div>
 							<small class="text-xs text-red-500">{{
-								authStore.loginError?.message
+								authStore.loginError
 							}}</small>
-						</div> -->
+						</div>
 						<!-- Footer -->
 						<div class="text-gray-600 text-left">
 							<small class="text-xs">New to Gundik ?</small>
@@ -71,10 +71,9 @@
 </template>
 
 <script setup>
-	// import { useAuthStore } from '@/stores/auth.store';
-	// const authStore = useAuthStore();
-
 	import { reactive } from 'vue';
+	import { useAuthStore } from '@/stores/auth.store';
+	const authStore = useAuthStore();
 
 	const user = reactive({
 		username: '',
@@ -82,18 +81,18 @@
 	});
 
 	async function handleLogin() {
-		// await authStore.login({
-		// 	username: user.username,
-		// 	password: user.password,
-		// });
+		await authStore.login({
+			username: user.username,
+			password: user.password,
+		});
 
 		user.username = '';
 		user.password = '';
 
-		// if (authStore.loginError !== null) {
-		// 	setTimeout(() => {
-		// 		authStore.loginError = null;
-		// 	}, 2000);
-		// }
+		if (authStore.loginError !== null) {
+			setTimeout(() => {
+				authStore.loginError = null;
+			}, 2000);
+		}
 	}
 </script>

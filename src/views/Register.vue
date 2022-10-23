@@ -73,11 +73,11 @@
 							<button type="submit" class="btn btn-primary">Register</button>
 						</div>
 						<!-- Error -->
-						<!-- <div>
+						<div>
 							<small class="text-xs text-red-500">{{
-								authStore.registerError?.message
+								authStore.registerError
 							}}</small>
-						</div> -->
+						</div>
 						<!-- Footer -->
 						<div class="text-gray-600 text-left">
 							<small class="text-xs">Already have an account ?</small>
@@ -97,9 +97,9 @@
 
 <script setup>
 	import { reactive } from 'vue';
-	// import { useAuthStore } from '@/stores/auth.store';
+	import { useAuthStore } from '@/stores/auth.store';
 
-	// const authStore = useAuthStore();
+	const authStore = useAuthStore();
 
 	const user = reactive({
 		email: '',
@@ -113,27 +113,27 @@
 			user.password = '';
 			user.repeatpassword = '';
 
-			// authStore.registerError = { message: "Password doesn't match" };
-			// return setTimeout(() => {
-			// 	authStore.registerError = null;
-			// }, 2000);
+			authStore.registerError = { message: "Password doesn't match" };
+			return setTimeout(() => {
+				authStore.registerError = null;
+			}, 2000);
 		}
 
-		// await authStore.register({
-		// 	email: user.email,
-		// 	username: user.username,
-		// 	password: user.password,
-		// });
+		await authStore.register({
+			email: user.email,
+			username: user.username,
+			password: user.password,
+		});
 
 		user.email = '';
 		user.username = '';
 		user.password = '';
 		user.repeatpassword = '';
 
-		// if (authStore.registerError !== null) {
-		// 	setTimeout(() => {
-		// 		authStore.registerError = null;
-		// 	}, 2000);
-		// }
+		if (authStore.registerError !== null) {
+			setTimeout(() => {
+				authStore.registerError = null;
+			}, 2000);
+		}
 	}
 </script>

@@ -34,7 +34,7 @@ const router = createRouter({
 router.beforeEach((to, _, next) => {
 	const authStore = useAuthStore();
 	// const { user } = storeToRefs(authStore);
-	const user = { value: 'null' };
+	const user = { value: null };
 
 	if (to.name === 'home' && !user.value) {
 		next({ name: 'login' });

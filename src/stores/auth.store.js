@@ -1,4 +1,4 @@
-// import auth from '@/api/auth';
+import auth from '@/api/auth';
 import { defineStore } from 'pinia';
 import router from '@/router';
 
@@ -11,27 +11,27 @@ export const useAuthStore = defineStore('auth', {
 	actions: {
 		async login(userData) {
 			try {
-				// const user = await auth.login(userData);
+				const user = await auth.login(userData);
 
 				this.user = user.data;
 				localStorage.setItem('user', JSON.stringify(user));
 
 				router.push('/').then(() => window.location.reload());
 			} catch (error) {
-				this.loginError = error.response.data;
+				this.loginError = error.response?.data.message || error.message;
 			}
 		},
 
 		async register(userData) {
 			try {
-				// const user = await auth.register(userData);
+				const user = await auth.register(userData);
 
 				this.user = user.data;
 				localStorage.setItem('user', JSON.stringify(user));
 
 				router.push('/').finally(() => window.location.reload());
 			} catch (error) {
-				this.registerError = error.response.data;
+				this.registerError = error.response?.data.message || error.message;
 			}
 		},
 		logout() {
