@@ -18,29 +18,18 @@
 					@submit.prevent="handleRegister"
 				>
 					<div class="card-body">
-						<!-- email -->
+						<!-- roomname -->
 						<div class="form-control">
 							<label class="label">
-								<span class="label-text text-gray-500 font-bold">Email</span>
-							</label>
-							<input
-								type="email"
-								placeholder="me@gundik.com"
-								v-model="user.email"
-								class="input input-bordered bg-gray-100 placeholder-gray-300 focus:bg-white focus:outline-none focus:border-red-400 focus:text-gray-900 font-bold"
-								required
-							/>
-						</div>
-						<!-- username -->
-						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-gray-500 font-bold">Username</span>
+								<span class="label-text text-gray-500 font-bold"
+									>Room-Name</span
+								>
 							</label>
 
 							<input
 								type="text"
 								placeholder="gundik"
-								v-model="user.username"
+								v-model="room.roomname"
 								class="input input-bordered bg-gray-100 placeholder-gray-300 focus:bg-white focus:outline-none focus:border-red-400 focus:text-gray-900 font-bold"
 								required
 							/>
@@ -53,7 +42,7 @@
 							<input
 								type="password"
 								placeholder="Password"
-								v-model="user.password"
+								v-model="room.password"
 								class="input input-bordered bg-gray-100 placeholder-gray-300 focus:bg-white focus:outline-none focus:border-primary focus:text-gray-900 font-bold"
 								required
 							/>
@@ -63,7 +52,7 @@
 							<input
 								type="password"
 								placeholder="Repeat Password"
-								v-model="user.repeatpassword"
+								v-model="room.repeatpassword"
 								class="input input-bordered bg-gray-100 placeholder-gray-300 focus:bg-white focus:outline-none focus:border-primary focus:text-gray-900 font-bold"
 								required
 							/>
@@ -101,17 +90,16 @@
 
 	const authStore = useAuthStore();
 
-	const user = reactive({
-		email: '',
-		username: '',
+	const room = reactive({
+		roomname: '',
 		password: '',
 		repeatpassword: '',
 	});
 
 	async function handleRegister() {
-		if (user.password !== user.repeatpassword) {
-			user.password = '';
-			user.repeatpassword = '';
+		if (room.password !== room.repeatpassword) {
+			room.password = '';
+			room.repeatpassword = '';
 
 			authStore.registerError = { message: "Password doesn't match" };
 			return setTimeout(() => {
@@ -120,15 +108,13 @@
 		}
 
 		await authStore.register({
-			email: user.email,
-			username: user.username,
-			password: user.password,
+			roomname: room.roomname,
+			password: room.password,
 		});
 
-		user.email = '';
-		user.username = '';
-		user.password = '';
-		user.repeatpassword = '';
+		room.roomname = '';
+		room.password = '';
+		room.repeatpassword = '';
 
 		if (authStore.registerError !== null) {
 			setTimeout(() => {

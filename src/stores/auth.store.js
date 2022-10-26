@@ -4,17 +4,17 @@ import router from '@/router';
 
 export const useAuthStore = defineStore('auth', {
 	state: () => ({
-		user: JSON.parse(localStorage.getItem('user')),
+		room: JSON.parse(localStorage.getItem('room')),
 		loginError: null,
 		registerError: null,
 	}),
 	actions: {
-		async login(userData) {
+		async login(roomData) {
 			try {
-				const user = await auth.login(userData);
+				const room = await auth.login(roomData);
 
-				this.user = user.data;
-				localStorage.setItem('user', JSON.stringify(user));
+				this.room = room.data;
+				localStorage.setItem('room', JSON.stringify(room));
 
 				router.push('/').then(() => window.location.reload());
 			} catch (error) {
@@ -22,12 +22,12 @@ export const useAuthStore = defineStore('auth', {
 			}
 		},
 
-		async register(userData) {
+		async register(roomData) {
 			try {
-				const user = await auth.register(userData);
+				const room = await auth.register(roomData);
 
-				this.user = user.data;
-				localStorage.setItem('user', JSON.stringify(user));
+				this.room = room.data;
+				localStorage.setItem('room', JSON.stringify(room));
 
 				router.push('/').finally(() => window.location.reload());
 			} catch (error) {
@@ -35,8 +35,8 @@ export const useAuthStore = defineStore('auth', {
 			}
 		},
 		logout() {
-			this.user = null;
-			localStorage.clear('user');
+			this.room = null;
+			localStorage.clear('room');
 		},
 	},
 });

@@ -33,12 +33,12 @@ const router = createRouter({
 
 router.beforeEach((to, _, next) => {
 	const authStore = useAuthStore();
-	// const { user } = storeToRefs(authStore);
-	const user = { value: null };
+	// const { rooom } = storeToRefs(authStore);
+	const room = { value: null };
 
-	if (to.name === 'home' && !user.value) {
+	if (to.name === 'home' && !room.value) {
 		next({ name: 'login' });
-	} else if ((to.name === 'login' || to.name === 'register') && user.value) {
+	} else if ((to.name === 'login' || to.name === 'register') && room.value) {
 		next({ name: 'home' });
 	} else next();
 });

@@ -18,17 +18,19 @@
 					@submit.prevent="handleLogin"
 				>
 					<div class="card-body">
-						<!-- username -->
+						<!-- roomname -->
 						<div class="form-control">
 							<label class="label">
-								<span class="label-text text-gray-500 font-bold">Username</span>
+								<span class="label-text text-gray-500 font-bold"
+									>Room-Name</span
+								>
 							</label>
 							<input
 								type="text"
 								placeholder="gundik"
 								class="input input-bordered bg-gray-100 placeholder-gray-300 focus:bg-white focus:outline-none focus:border-primary focus:text-gray-900 font-bold"
 								required
-								v-model="user.username"
+								v-model="room.roomname"
 							/>
 						</div>
 						<!-- password -->
@@ -37,7 +39,7 @@
 								<span class="label-text text-gray-500 font-bold">Password</span>
 							</label>
 							<input
-								v-model="user.password"
+								v-model="room.password"
 								type="password"
 								placeholder="password"
 								class="input input-bordered bg-gray-100 placeholder-gray-300 focus:bg-white focus:outline-none focus:border-primary focus:text-gray-900 font-bold"
@@ -75,19 +77,19 @@
 	import { useAuthStore } from '@/stores/auth.store';
 	const authStore = useAuthStore();
 
-	const user = reactive({
-		username: '',
+	const room = reactive({
+		roomname: '',
 		password: '',
 	});
 
 	async function handleLogin() {
 		await authStore.login({
-			username: user.username,
-			password: user.password,
+			roomname: room.roomname,
+			password: room.password,
 		});
 
-		user.username = '';
-		user.password = '';
+		room.roomname = '';
+		room.password = '';
 
 		if (authStore.loginError !== null) {
 			setTimeout(() => {

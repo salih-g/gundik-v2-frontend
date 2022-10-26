@@ -1,18 +1,18 @@
 import axios from './axios';
 
 export default {
-	login: async (user) => {
+	login: async (room) => {
 		const res = await axios().post('/v1/auth/login', {
-			username: user.username,
-			password: user.password,
+			roomname: room.roomname,
+			password: room.password,
 		});
 
 		return res.data;
 	},
-	register: async (user) => {
+	register: async (room) => {
 		const res = await axios().post('/v1/auth/register', {
-			username: user.username,
-			password: user.password,
+			roomname: room.roomname,
+			password: room.password,
 		});
 
 		return res.data;
