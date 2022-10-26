@@ -6,7 +6,6 @@
 	import useSocketIO from './api/socket';
 
 	const { socket } = useSocketIO();
-	socket.on('welcome', () => {
-		console.log('welcome');
-	});
+
+	socket.emit('hello', 'abbas');
 </script>

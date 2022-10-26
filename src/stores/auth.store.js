@@ -34,6 +34,7 @@ export const useAuthStore = defineStore('auth', {
 		logout() {
 			this.room = null;
 			localStorage.clear('room');
+			router.push('/login').then(() => window.location.reload());
 		},
 	},
 });
