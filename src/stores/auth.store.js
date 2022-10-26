@@ -26,10 +26,7 @@ export const useAuthStore = defineStore('auth', {
 			try {
 				const room = await auth.register(roomData);
 
-				this.room = room.data;
-				localStorage.setItem('room', JSON.stringify(room));
-
-				router.push('/').finally(() => window.location.reload());
+				router.push('/login').finally(() => window.location.reload());
 			} catch (error) {
 				this.registerError = error.response?.data.message || error.message;
 			}
